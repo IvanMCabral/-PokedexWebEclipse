@@ -56,7 +56,7 @@ public class TestPokemonMock {
 
 	@Mock
 	private PokemonDAO pdao;
-	
+
 	@Mock
 	private EvolveDAO edao;
 
@@ -100,26 +100,23 @@ public class TestPokemonMock {
 
 	}
 
-	
 	@Test
 	public void InsertPokemonMock() {
 
 		Pokemon d = Mockito.mock(Pokemon.class);
-		
-		Mockito.when(pdao.addPokemon(Mockito.any(Connection.class), Mockito.any(Pokemon.class)))
-		.thenReturn("New Pokemon Inserted!!");
-		
-		String result1 = pdao.addPokemon(con, d);//New Pokemon Inserted!!
 
-		String result = pbo.addPokemon(d);//Add with Mockito get Error Save!
+		Mockito.when(pdao.addPokemon(Mockito.any(Connection.class), Mockito.any(Pokemon.class)))
+				.thenReturn("New Pokemon Inserted!!");
+
+		String result1 = pdao.addPokemon(con, d);// New Pokemon Inserted!!
+
+		String result = pbo.addPokemon(d);// Add with Mockito get Error Save!
 
 		assertNotEquals(result1, result);
-		assertEquals(result1,"New Pokemon Inserted!!");
-		
+		assertEquals(result1, "New Pokemon Inserted!!");
+
 	}
-	
-	
-	
+
 	// test insert pokemon throw exception
 	@Test(expected = Exception.class)
 	public void insertnullException() {
@@ -346,13 +343,11 @@ public class TestPokemonMock {
 		assertNotSame(mockedList, result);
 
 	}
-	
+
 	@Test
 	public void TestListAbilitiesEmpty() {
 
-	
-		List List = new ArrayList();//lista vacia
-		
+		List List = new ArrayList();// lista vacia
 
 		Mockito.when(pdao.listAbilities(Mockito.any(int.class)))
 				.thenReturn("select name from ability where idpokemon =" + "'" + 1 + "'");
@@ -363,49 +358,33 @@ public class TestPokemonMock {
 
 		List = mdao.list(con, name);
 
-		
-
 		List result = pbo.listAbilities(96);// deberia ser una lista vacia
 
-		assertEquals(List, result);//listas vacias iguales
+		assertEquals(List, result);// listas vacias iguales
 		assertNotSame(List, result);// no apuntan a la misma direccion de memoria
 
 	}
-	
+
 	@Test
 	public void Delete() {
 
-	
 		Pokemon d = Mockito.mock(Pokemon.class);
-		
 
 		pbo.deletePokemon(d.getIdpokemon());
 
-		
-		
 	}
-	
-	
+
 	@Test
 	public void LastPoke() {
-	
-	
-			Mockito.when(edao.lastPoke(Mockito.any(Connection.class))).thenReturn(96);
-			
-			int idEsperado = edao.lastPoke(con);
-			
-			int idPokefinal = ebo.lastPoke();
-			
-			Assert.assertEquals(idEsperado, idPokefinal);
 
-		
-		
+		Mockito.when(edao.lastPoke(Mockito.any(Connection.class))).thenReturn(96);
+
+		int idEsperado = edao.lastPoke(con);
+
+		int idPokefinal = ebo.lastPoke();
+
+		Assert.assertEquals(idEsperado, idPokefinal);
+
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }
