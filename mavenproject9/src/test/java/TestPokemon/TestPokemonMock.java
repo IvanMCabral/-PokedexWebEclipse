@@ -361,7 +361,6 @@ public class TestPokemonMock {
 
 		assertEquals(List, result);// listas vacias iguales
 		assertNotSame(List, result);// no apuntan a la misma direccion de memoria
-
 	}
 
 	@Test
