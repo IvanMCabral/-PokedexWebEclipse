@@ -355,7 +355,6 @@ public class TestPokemonMock {
 		String name = pdao.listAbilities(96);
 
 		Mockito.when(mdao.list(Mockito.any(Connection.class), Mockito.any(String.class))).thenReturn(List);
-
 		List = mdao.list(con, name);
 
 		List result = pbo.listAbilities(96);// deberia ser una lista vacia
